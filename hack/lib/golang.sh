@@ -5,7 +5,7 @@ readonly KUBE_GOPATH="${KUBE_OUTPUT}"
 
 kube::golang::server_targets() {
   local targets=(
-    ./
+    .
   )
   echo "${targets[@]}"
 }
@@ -244,7 +244,6 @@ kube::golang::build_some_binaries() {
     # shellcheck disable=SC2145
     V=2 kube::log::info "Building ${package} ..."
     go build -o "$(kube::golang::outfile_for_binary "${package}" "${platform}")" \
-      -mod=vendor \
       "${build_args[@]}" \
       "${package}"
   done
