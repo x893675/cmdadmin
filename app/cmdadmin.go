@@ -2,11 +2,12 @@ package app
 
 import (
 	"flag"
+	"os"
+
 	"github.com/spf13/pflag"
-	cmd2 "github.com/x893675/certadmin/app/cmd"
+	cmd2 "github.com/x893675/cmdadmin/app/cmd"
 	cliflag "k8s.io/component-base/cli/flag"
 	"k8s.io/klog/v2"
-	"os"
 )
 
 func Run() error {

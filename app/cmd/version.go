@@ -3,11 +3,12 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"io"
+
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-	"github.com/x893675/certadmin/pkg/version"
+	"github.com/x893675/cmdadmin/pkg/version"
 	"gopkg.in/yaml.v2"
-	"io"
 	"k8s.io/klog/v2"
 )
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/x893675/certadmin/app"
-	"github.com/x893675/certadmin/app/cmd/util"
+	"github.com/x893675/cmdadmin/app"
+	"github.com/x893675/cmdadmin/app/cmd/util"
 )
 
 func main() {

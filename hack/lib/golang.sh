@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly KUBE_GO_PACKAGE=github.com/x893675/certadmin
+readonly KUBE_GO_PACKAGE=github.com/x893675/cmdadmin
 readonly KUBE_GOPATH="${KUBE_OUTPUT}"
 
 kube::golang::server_targets() {
@@ -22,7 +22,7 @@ readonly KUBE_ALL_TARGETS=(
 readonly KUBE_ALL_BINARIES=("${KUBE_ALL_TARGETS[@]##*/}")
 
 readonly KUBE_STATIC_LIBRARIES=(
-  certadmin
+  .
 )
 
 

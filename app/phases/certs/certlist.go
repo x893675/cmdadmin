@@ -3,8 +3,9 @@ package certs
 import (
 	"crypto"
 	"crypto/x509"
+
 	"github.com/pkg/errors"
-	"github.com/x893675/certadmin/app/util/pkiutil"
+	"github.com/x893675/cmdadmin/app/util/pkiutil"
 )
 
 const (

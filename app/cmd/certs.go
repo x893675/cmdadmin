@@ -1,11 +1,12 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/x893675/certadmin/app/cmd/options"
-	certsphase "github.com/x893675/certadmin/app/phases/certs"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
+
+	"github.com/spf13/cobra"
+	"github.com/x893675/cmdadmin/app/cmd/options"
+	certsphase "github.com/x893675/cmdadmin/app/phases/certs"
+	"gopkg.in/yaml.v2"
 )
 
 type certsOptions struct {

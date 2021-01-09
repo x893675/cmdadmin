@@ -1,4 +1,4 @@
-module github.com/x893675/certadmin
+module github.com/x893675/cmdadmin
 
 go 1.15
 
