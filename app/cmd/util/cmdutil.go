@@ -5,7 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-
 // SubCmdRunE returns a function that handles a case where a subcommand must be specified
 // Without this callback, if a user runs just the command without a subcommand,
 // or with an invalid subcommand, cobra will print usage information, but still exit cleanly.
@@ -20,7 +19,6 @@ func SubCmdRunE(name string) func(*cobra.Command, []string) error {
 		return errors.Errorf("invalid subcommand: %q", args[0])
 	}
 }
-
 
 // ValidateExactArgNumber validates that the required top-level arguments are specified
 func ValidateExactArgNumber(args []string, supportedArgs []string) error {

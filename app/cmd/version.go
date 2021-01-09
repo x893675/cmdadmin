@@ -6,9 +6,9 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/x893675/certadmin/pkg/version"
+	"gopkg.in/yaml.v2"
 	"io"
 	"k8s.io/klog/v2"
-	"sigs.k8s.io/yaml"
 )
 
 type Version struct {

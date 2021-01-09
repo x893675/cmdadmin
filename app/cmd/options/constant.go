@@ -1,15 +1,13 @@
 package options
 
-
 const (
 	// CertificatesDir flag sets the path where to save and read the certificates.
 	CertificatesDir = "cert-dir"
 
-	// CfgPath flag sets the path to kubeadm config file.
+	// CfgPath flag sets the path to cmdadmin config file.
 	CfgPath = "config"
 
-
-	// CSROnly flag instructs kubeadm to create CSRs instead of automatically creating or renewing certs
+	// CSROnly flag instructs cmdadmin to create CSRs instead of automatically creating or renewing certs
 	CSROnly = "csr-only"
 
 	// CSRDir flag sets the location for CSRs and flags to be output

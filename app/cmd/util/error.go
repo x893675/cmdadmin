@@ -1,6 +1,5 @@
 package util
 
-
 import (
 	"flag"
 	"fmt"

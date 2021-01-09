@@ -12,10 +12,8 @@ import (
 // phase names
 const phaseSeparator = "/"
 
-
 // RunData defines the data shared among all the phases included in the workflow, that is any type.
 type RunData = interface{}
-
 
 // RunnerOptions defines the options supported during the execution of a
 // kubeadm composable workflows
@@ -97,7 +95,6 @@ func (e *Runner) AppendPhase(t Phase) {
 	e.Phases = append(e.Phases, t)
 }
 
-
 // computePhaseRunFlags return a map defining which phase should be run and which not.
 // PhaseRunFlags are computed according to RunnerOptions.
 func (e *Runner) computePhaseRunFlags() (map[string]bool, error) {
@@ -152,8 +149,6 @@ func (e *Runner) computePhaseRunFlags() (map[string]bool, error) {
 
 	return phaseRunFlags, nil
 }
-
-
 
 // SetDataInitializer allows to setup a function that initialize the runtime data shared
 // among all the phases included in the workflow.

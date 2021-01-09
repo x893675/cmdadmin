@@ -25,7 +25,6 @@ func (info Info) String() string {
 	return info.GitVersion
 }
 
-
 func Get() Info {
 	return Info{
 		Major:        gitMajor,
