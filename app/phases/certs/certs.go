@@ -207,53 +207,6 @@ type certKeyLocation struct {
 	uxName     string
 }
 
-// UsingExternalCA determines whether the user is relying on an external CA.  We currently implicitly determine this is the case
-// when the CA Cert is present but the CA Key is not.
-// This allows us to, e.g., skip generating certs or not start the csr signing controller.
-// In case we are using an external front-proxy CA, the function validates the certificates signed by front-proxy CA that should be provided by the user.
-//func UsingExternalCA(cfg *apis.ClusterConfiguration) (bool, error) {
-//
-//	if err := validateCACert(certKeyLocation{cfg.CertificatesDir, constants.CACertAndKeyBaseName, "", "CA"}); err != nil {
-//		return false, err
-//	}
-//
-//	caKeyPath := filepath.Join(cfg.CertificatesDir, constants.CAKeyName)
-//	if _, err := os.Stat(caKeyPath); !os.IsNotExist(err) {
-//		return false, nil
-//	}
-//
-//	if err := validateSignedCert(certKeyLocation{cfg.CertificatesDir, constants.CACertAndKeyBaseName, constants.APIServerCertAndKeyBaseName, "API server"}); err != nil {
-//		return true, err
-//	}
-//
-//	if err := validateSignedCert(certKeyLocation{cfg.CertificatesDir, constants.CACertAndKeyBaseName, constants.APIServerKubeletClientCertAndKeyBaseName, "API server kubelet client"}); err != nil {
-//		return true, err
-//	}
-//
-//	return true, nil
-//}
-
-// UsingExternalFrontProxyCA determines whether the user is relying on an external front-proxy CA.  We currently implicitly determine this is the case
-// when the front proxy CA Cert is present but the front proxy CA Key is not.
-// In case we are using an external front-proxy CA, the function validates the certificates signed by front-proxy CA that should be provided by the user.
-//func UsingExternalFrontProxyCA(cfg *apis.ClusterConfiguration) (bool, error) {
-//
-//	if err := validateCACert(certKeyLocation{cfg.CertificatesDir, constants.FrontProxyCACertAndKeyBaseName, "", "front-proxy CA"}); err != nil {
-//		return false, err
-//	}
-//
-//	frontProxyCAKeyPath := filepath.Join(cfg.CertificatesDir, constants.FrontProxyCAKeyName)
-//	if _, err := os.Stat(frontProxyCAKeyPath); !os.IsNotExist(err) {
-//		return false, nil
-//	}
-//
-//	if err := validateSignedCert(certKeyLocation{cfg.CertificatesDir, constants.FrontProxyCACertAndKeyBaseName, constants.FrontProxyClientCertAndKeyBaseName, "front-proxy client"}); err != nil {
-//		return true, err
-//	}
-//
-//	return true, nil
-//}
-
 // validateCACert tries to load a x509 certificate from pkiDir and validates that it is a CA
 func validateCACert(l certKeyLocation) error {
 	// Check CA Cert

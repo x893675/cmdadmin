@@ -1,4 +1,4 @@
-build-all:
+build:
 	mkdir -pv dist && KUBE_VERBOSE=2 bash hack/make-rules/build.sh
 
 

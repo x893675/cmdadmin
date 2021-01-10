@@ -4,6 +4,8 @@
   cfg:
     algorithm: 1
     commonName: etcd-ca
+    # In years, ignoring leap years， 1 year = 365 day
+    duration: 99
 - name: etcd-server
   baseName: etcd/server
   caName: "etcd-ca"

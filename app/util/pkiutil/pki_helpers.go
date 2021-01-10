@@ -19,7 +19,6 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/x893675/cmdadmin/app/constants"
 	certutil "github.com/x893675/cmdadmin/pkg/util/cert"
 	"github.com/x893675/cmdadmin/pkg/util/keyutil"
 	"k8s.io/apimachinery/pkg/util/sets"
@@ -464,6 +463,7 @@ func NewSignedCert(cfg *CertConfig, key crypto.Signer, caCert *x509.Certificate,
 
 	RemoveDuplicateAltNames(&cfg.AltNames)
 
+	//TODO: compare cert duration and caCert duration
 	certTmpl := x509.Certificate{
 		Subject: pkix.Name{
 			CommonName:   cfg.CommonName,
@@ -473,7 +473,7 @@ func NewSignedCert(cfg *CertConfig, key crypto.Signer, caCert *x509.Certificate,
 		IPAddresses:  cfg.AltNames.IPs,
 		SerialNumber: serial,
 		NotBefore:    caCert.NotBefore,
-		NotAfter:     time.Now().Add(constants.CertificateValidity).UTC(),
+		NotAfter:     time.Now().Add(cfg.GetDuration()).UTC(),
 		KeyUsage:     x509.KeyUsageKeyEncipherment | x509.KeyUsageDigitalSignature,
 		ExtKeyUsage:  cfg.Usages,
 	}

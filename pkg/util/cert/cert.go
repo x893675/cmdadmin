@@ -23,10 +23,11 @@ const duration365d = time.Hour * 24 * 365
 
 // Config contains the basic fields required for creating a certificate
 type Config struct {
-	CommonName   string             `yaml:"commonName"`
-	Organization []string           `yaml:"organization"`
-	AltNames     AltNames           `yaml:"altNames"`
-	Usages       []x509.ExtKeyUsage `yaml:"usages"`
+	CommonName     string             `yaml:"commonName"`
+	Organization   []string           `yaml:"organization"`
+	AltNames       AltNames           `yaml:"altNames"`
+	Usages         []x509.ExtKeyUsage `yaml:"usages"`
+	DurationOfYear int                `yaml:"duration"`
 }
 
 // AltNames contains the domain names and IP addresses that will be added
@@ -35,6 +36,13 @@ type Config struct {
 type AltNames struct {
 	DNSNames []string `yaml:"dns"`
 	IPs      []net.IP `yaml:"ips"`
+}
+
+func (c Config) GetDuration() time.Duration {
+	if c.DurationOfYear == 0 {
+		return duration365d
+	}
+	return time.Duration(c.DurationOfYear) * duration365d
 }
 
 // NewSelfSignedCACert creates a CA certificate
@@ -47,7 +55,7 @@ func NewSelfSignedCACert(cfg Config, key crypto.Signer) (*x509.Certificate, erro
 			Organization: cfg.Organization,
 		},
 		NotBefore:             now.UTC(),
-		NotAfter:              now.Add(duration365d * 10).UTC(),
+		NotAfter:              now.Add(cfg.GetDuration()).UTC(),
 		KeyUsage:              x509.KeyUsageKeyEncipherment | x509.KeyUsageDigitalSignature | x509.KeyUsageCertSign,
 		BasicConstraintsValid: true,
 		IsCA:                  true,
