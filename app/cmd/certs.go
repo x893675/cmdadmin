@@ -2,11 +2,13 @@ package cmd
 
 import (
 	"io/ioutil"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/x893675/cmdadmin/app/cmd/options"
 	certsphase "github.com/x893675/cmdadmin/app/phases/certs"
 	"gopkg.in/yaml.v2"
+	"k8s.io/klog/v2"
 )
 
 type certsOptions struct {
@@ -34,6 +36,7 @@ func newCmdCerts() *cobra.Command {
 	}
 
 	// TODO: add sub command to generate example config
+	cmd.AddCommand(newCmdCertsConfig())
 	options.AddCertificateDirFlag(cmd.Flags(), &opts.CertificatesDir)
 	options.AddConfigFlag(cmd.Flags(), &opts.ConfigPath)
 	return cmd
@@ -82,4 +85,49 @@ func filterCAAndCerts(data []*certsphase.CmdAdminCert) (map[string]*certsphase.C
 		}
 	}
 	return ca, cert
+}
+
+// certs sub command config
+func newCmdCertsConfig() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "config",
+		Short:   "Certs config",
+		Aliases: []string{"cfg"},
+		RunE: func(cmd *cobra.Command, args []string) error {
+			klog.Info("args is %v", args)
+			return nil
+		},
+		Args: cobra.NoArgs,
+	}
+	cmd.AddCommand(newCmdCertsConfigDefault())
+	cmd.AddCommand(newCmdCertsConfigCheck())
+	return cmd
+}
+
+func newCmdCertsConfigDefault() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "default",
+		Short:   "Generate Certs default config",
+		Aliases: []string{"d"},
+		RunE: func(cmd *cobra.Command, args []string) error {
+			_, _ = os.Stdout.Write([]byte(options.DefaultCertsConfig))
+			return nil
+		},
+		Args: cobra.NoArgs,
+	}
+	return cmd
+}
+
+func newCmdCertsConfigCheck() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "check",
+		Short:   "Check Certs config valid or not",
+		Aliases: []string{"c"},
+		RunE: func(cmd *cobra.Command, args []string) error {
+			klog.Warning("check command not support yet")
+			return nil
+		},
+		Args: cobra.NoArgs,
+	}
+	return cmd
 }

@@ -35,7 +35,6 @@ func (c Certificates) AsMap() CertificateMap {
 	for _, cert := range c {
 		certMap[cert.Name] = cert
 	}
-
 	return certMap
 }
 
